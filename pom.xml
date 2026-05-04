@@ -140,7 +140,7 @@
         <dependency>
             <groupId>org.popcraft</groupId>
             <artifactId>chunky-common</artifactId>
-            <version>1.4.57</version>
+            <version>1.5.3</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
