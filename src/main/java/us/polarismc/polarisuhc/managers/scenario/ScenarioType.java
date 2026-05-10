@@ -5,7 +5,7 @@ import us.polarismc.polarisuhc.scenarios.*;
 
 @Getter
 public enum ScenarioType {
-    ABSORPTION_LESS(AbsorptionLessScenario.class),
+    ABSORPTION_LESS(AbsorptionLess.class),
     CUT_CLEAN(CutClean.class),
     FIRE_LESS(FireLessScenario.class),
     FORTUNE_BABIES(FortuneBabies.class),
@@ -23,7 +23,6 @@ public enum ScenarioType {
     TEAM_INVENTORY(TeamInventory.class),
     TIMBER(TimberScenario.class),
     TIME_BOMB(TimeBombScenario.class),
-    COLD_WEAPONS(ColdWeaponsScenario.class),
     UNBREAKABLE(Unbreakable.class);
 
     private final Class<? extends BaseScenario> scenarioClass;
