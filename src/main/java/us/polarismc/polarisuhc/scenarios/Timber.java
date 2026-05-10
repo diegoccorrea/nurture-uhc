@@ -3,6 +3,7 @@ package us.polarismc.polarisuhc.scenarios;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -15,21 +16,12 @@ import java.util.UUID;
 
 @Scenario(name = "Timber", author = "volcqnn", icon = Material.OAK_LOG,
         description = "Breaking a log block causes all blocks above it to break too.")
-public class TimberScenario extends BaseScenario {
-    private static final int CAP = 30;
+public class Timber extends BaseScenario {
     private final Set<UUID> processing = new HashSet<>();
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        if (!isEnabled()) return;
-        if (event.getBlock().getType() != Material.OAK_LOG &&
-            event.getBlock().getType() != Material.SPRUCE_LOG &&
-            event.getBlock().getType() != Material.BIRCH_LOG &&
-            event.getBlock().getType() != Material.JUNGLE_LOG &&
-            event.getBlock().getType() != Material.DARK_OAK_LOG &&
-            event.getBlock().getType() != Material.MANGROVE_LOG) {
-            return;
-        }
+        if (!event.getBlock().getType().name().endsWith("_LOG")) return;
 
         UUID uuid = event.getPlayer().getUniqueId();
         if (processing.contains(uuid)) return;
@@ -42,27 +34,23 @@ public class TimberScenario extends BaseScenario {
     }
 
     private void breakChain(Location loc, Player player, int[] count) {
+        int CAP = 30;
         if (count[0] >= CAP) return;
 
         Location blockLoc = loc.clone().add(0, 1, 0);
-        org.bukkit.block.Block block = blockLoc.getBlock();
+        Block block = blockLoc.getBlock();
         if (block.getType() == Material.AIR) return;
 
-        boolean isLog = block.getType() == Material.OAK_LOG ||
-                block.getType() == Material.SPRUCE_LOG ||
-                block.getType() == Material.BIRCH_LOG ||
-                block.getType() == Material.JUNGLE_LOG ||
-                block.getType() == Material.DARK_OAK_LOG ||
-                block.getType() == Material.MANGROVE_LOG;
+        boolean isLog = block.getType().name().endsWith("_LOG");
 
         if (!isLog) return;
 
         count[0]++;
 
-        plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
+        plugin.utils.delay(() -> {
             block.breakNaturally();
             block.getWorld().playSound(block.getLocation(), Sound.BLOCK_WOOD_BREAK, 1.0f, 1.0f);
             breakChain(block.getLocation(), player, count);
-        }, 1L);
+        });
     }
 }
