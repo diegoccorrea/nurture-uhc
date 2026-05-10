@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Scenario(name = "CutClean", author = "putindeer", icon = Material.IRON_INGOT,
-        description = "Ores are auto-smelted and animals drop cooked meat.")
+        description = "Ores are auto-smelted and animals drop cooked meat.",
+        inDevelopment = true)
 public class CutClean extends BaseScenario {
     //TODO - hacer lo de los minerales del cutclean
     @EventHandler
