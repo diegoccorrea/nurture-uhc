@@ -1,0 +1,101 @@
+# Scoreboard configuration for Polaris UHC
+# Each UHC state has its own scoreboard display
+# Use MiniMessage formatting: <red>, <bold>, <gold>, etc.
+# Placeholders: %players%, %alive%, %dead%, %spectators%, %state%, %time%, %next%, %border%, %kills%, %team%
+
+IDLE:
+  title: "<aqua><b>Polaris UHC"
+  lines:
+    - "<gray><st>                       "
+    - "<i>Players</i> <white>%players%"
+    - "<i>TeamSize</i> <white>%teamsize%"
+    - "<i>Host</i> <white>%host%"
+    - ""
+    - "<i>Scenarios</i> <aqua>/sᴄᴇɴ"
+    - "<i>Start in</i> <white>%start%"
+    - "<gray><st>                       "
+    - "<aqua>polarismc.us"
+PRESTARTED:
+  title: "<aqua><b>Polaris UHC"
+  lines:
+    - "<gray><st>                       "
+    - "<i>Players</i> <white>%players%"
+    - "<i>TeamSize</i> <white>%teamsize%"
+    - "<i>Host</i> <white>%host%"
+    - ""
+    - "<i>Scenarios</i> <aqua>/sᴄᴇɴ"
+    - "<i>Start in</i> <white>%start%"
+    - "<gray><st>                       "
+    - "<aqua>polarismc.us"
+
+SCATTERING:
+  title: "<aqua><b>Polaris UHC"
+  lines:
+    - "<gray><st>                       "
+    - "<i>Time</i> <aqua>%time%"
+    - "<i>Players</i> <white>%players%"
+    - ""
+    - "<i>Border</i> <aqua>%border%"
+    - "<i>Kills</i> <aqua>%kills%"
+    - "<gray><st>                       "
+    - "<aqua>polarismc.us"
+
+SCATTERED:
+  title: "<aqua><b>Polaris UHC"
+  lines:
+    - "<gray><st>                       "
+    - "<i>Time</i> <aqua>%time%"
+    - "<i>Players</i> <white>%players%"
+    - ""
+    - "<i>Border</i> <aqua>%border%"
+    - "<i>Kills</i> <aqua>%kills%"
+    - "<gray><st>                       "
+    - "<aqua>polarismc.us"
+
+STARTED:
+  title: "<aqua><b>Polaris UHC"
+  lines:
+    - "<gray><st>                       "
+    - "<i>Time</i> <aqua>%time%"
+    - "<i>Players</i> <white>%players%"
+    - ""
+    - "<i>Border</i> <aqua>%border%"
+    - "<i>Kills</i> <aqua>%kills%"
+    - "<gray><st>                       "
+    - "<aqua>polarismc.us"
+
+PVP:
+  title: "<aqua><b>Polaris UHC"
+  lines:
+    - "<gray><st>                       "
+    - "<i>Time</i> <aqua>%time%"
+    - "<i>Players</i> <white>%players%"
+    - ""
+    - "<i>Border</i> <aqua>%border%"
+    - "<i>Kills</i> <aqua>%kills%"
+    - "<gray><st>                       "
+    - "<aqua>polarismc.us"
+
+MEETUP:
+  title: "<aqua><b>Polaris UHC"
+  lines:
+    - "<gray><st>                       "
+    - "<i>Time</i> <aqua>%time%"
+    - "<i>Players</i> <white>%players%"
+    - ""
+    - "<i>Border</i> <aqua>%border%"
+    - "<i>Kills</i> <aqua>%kills%"
+    - "<gray><st>                       "
+    - "<aqua>polarismc.us"
+
+FINALIZED:
+  title: "<aqua><b>Polaris UHC"
+  lines:
+    - "<gray><st>                       "
+    - "<i>Time</i> <aqua>%time%"
+    - "<i>Players</i> <white>%players%"
+    - ""
+    - "<i>Border</i> <aqua>%border%"
+    - "<i>Kills</i> <aqua>%kills%"
+    - "<gray><st>                       "
+    - "<aqua>polarismc.us"

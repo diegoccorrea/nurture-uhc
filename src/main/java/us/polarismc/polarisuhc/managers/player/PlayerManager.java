@@ -36,6 +36,9 @@ public class PlayerManager implements Listener {
         if (getUHCPlayer(player) == null) {
             playerList.add(new UHCPlayer(event.getPlayer()));
         }
+        if (plugin.info != null && plugin.info.board != null) {
+            plugin.info.board.onPlayerJoin(player);
+        }
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
@@ -43,6 +46,9 @@ public class PlayerManager implements Listener {
         Player player = event.getPlayer();
         if (player.isInvulnerable()) {
             player.setInvulnerable(false);
+        }
+        if (plugin.info != null && plugin.info.board != null) {
+            plugin.info.board.onPlayerQuit(player);
         }
     }
 

@@ -10,6 +10,7 @@ import us.polarismc.polarisuhc.managers.hub.HubManager;
 import us.polarismc.polarisuhc.managers.info.InfoManager;
 import us.polarismc.polarisuhc.managers.player.PlayerManager;
 import us.polarismc.polarisuhc.managers.scenario.ScenarioManager;
+import us.polarismc.polarisuhc.managers.statistics.StatisticsManager;
 import us.polarismc.polarisuhc.managers.team.TeamManager;
 import us.polarismc.polarisuhc.managers.uhc.UHCManager;
 import us.polarismc.polarisuhc.util.StartThings;
@@ -30,11 +31,14 @@ public class Main extends JavaPlugin {
     public GameFlowManager game;
     public ArenaManager arena;
     public HubManager hub;
+    public StatisticsManager statistics;
+
     @Override
     public void onEnable() {
         instance = this;
         utils = new Utils(this, "<blue><bold>UHC</bold></blue> <dark_gray>»</dark_gray> <reset>");
         start = new StartThings(this);
+        statistics = new StatisticsManager(this);
     }
 
     @Override

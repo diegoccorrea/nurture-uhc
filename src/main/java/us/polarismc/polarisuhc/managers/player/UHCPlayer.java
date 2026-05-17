@@ -34,6 +34,15 @@ public class UHCPlayer {
     private boolean arena = false;
     private boolean isEditingKit = false;
 
+    private int kills = 0;
+    private int deaths = 0;
+    private int wins = 0;
+
+    public void addKill() { kills++; }
+    public void addDeath() { deaths++; }
+    public void incrementWins() { wins++; }
+    public void addDiamond() { addMinedResource(MinedResource.DIAMOND); }
+
     public UHCPlayer(Player player) {
         this(player.getUniqueId(), player.getName());
     }

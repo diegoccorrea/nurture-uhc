@@ -29,6 +29,8 @@ public class InfoManager {
 
     public void restartAllTasks() {
         bar.restartUpdateTask();
+        board.reloadConfig();
+        board.restartUpdateTask();
     }
 
     public void handleInfoStart() {
