@@ -1,0 +1,89 @@
+# Scoreboard configuration for Polaris UHC
+# Each UHC state has its own scoreboard display
+# Use MiniMessage formatting: <red>, <bold>, <gold>, etc.
+# Placeholders: %players%, %alive%, %dead%, %spectators%, %state%, %time%, %next%, %border%, %kills%, %team%
+
+IDLE:
+  title: "<gold>⚔ POLARIS UHC ⚔"
+  lines:
+    - "%state%"
+    - ""
+    - "<gray>Waiting for players..."
+    - ""
+    - "<aqua>Players: <white>%players%"
+
+PRESTARTED:
+  title: "<yellow>⏳ Starting Soon ⏳"
+  lines:
+    - "%state%"
+    - ""
+    - "<aqua>Players: <white>%players%"
+    - "<green>Alive: <white>%alive%"
+    - ""
+    - "<gray>Game starts soon!"
+
+SCATTERING:
+  title: "<aqua>🗺 Scattering... 🗺"
+  lines:
+    - "%state%"
+    - ""
+    - "<green>Alive: <white>%alive%"
+    - "<red>Dead: <white>%dead%"
+    - ""
+    - "<gray>Finding spawn locations..."
+
+SCATTERED:
+  title: "<green>✓ Scattered ✓"
+  lines:
+    - "<green>%state%"
+    - ""
+    - "<aqua>Players: <white>%players%"
+    - "<green>Alive: <white>%alive%"
+    - "<red>Dead: <white>%dead%"
+
+STARTED:
+  title: "<red>⚔ UHC Started ⚔"
+  lines:
+    - "<red>%state%"
+    - ""
+    - "<green>Alive: <white>%alive%"
+    - "<red>Dead: <white>%dead%"
+    - "<gray>Time: <white>%time%"
+    - ""
+    - "<aqua>Border: <white>%border%"
+
+PVP:
+  title: "<red>⚔ PvP Phase ⚔"
+  lines:
+    - "<red>%state%"
+    - ""
+    - "<green>Alive: <white>%alive%"
+    - "<red>Dead: <white>%dead%"
+    - "<gray>Time: <white>%time%"
+    - ""
+    - "<aqua>Border: <white>%border%"
+    - "<yellow>Next: <white>%next%"
+
+MEETUP:
+  title: "<gold>🏰 Meetup Time 🏰"
+  lines:
+    - "<gold>%state%"
+    - ""
+    - "<green>Alive: <white>%alive%"
+    - "<red>Dead: <white>%dead%"
+    - "<gray>Time: <white>%time%"
+    - ""
+    - "<aqua>Border: <white>%border%"
+    - "<yellow>Kills: <white>%kills%"
+
+FINALIZED:
+  title: "<green>🏆 Game Over 🏆"
+  lines:
+    - "<green>%state%"
+    - ""
+    - "<aqua>Winner: <white>%team%"
+    - ""
+    - "<green>Alive: <white>%alive%"
+    - "<red>Dead: <white>%dead%"
+    - ""
+    - "<gray>Thanks for playing!
