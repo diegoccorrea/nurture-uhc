@@ -101,6 +101,7 @@ For a detailed explanation of all scenarios (in Spanish and English), visit:
 - 🇬🇧 [Scenarios in English](https://pastebin.com/y6h9EjDb)
 
 | Scenario | Effect |
+|----------|--------|
 | **AbsorptionLess** | Absorption hearts are disabled, but golden apples still heal. |
 | **CutClean** | Ores are auto-smelted and animals drop cooked meat. ⚠️ [In Dev] |
 | **FireLess** | You cannot take fire or lava damage. |
