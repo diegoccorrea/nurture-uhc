@@ -14,6 +14,13 @@ public class PvPStartService {
     }
 
     public void startPvP() {
+        PvPStartEvent event = new PvPStartEvent();
+        Bukkit.getPluginManager().callEvent(event);
+
+        if (event.isCancelled()) {
+            return;
+        }
+
         plugin.uhc.setState(UHCState.PVP);
         plugin.utils.broadcast(SoundEventKeys.BLOCK_BEACON_POWER_SELECT, "<aqua>PvP<gray> has been enabled, good luck!");
         if (plugin.uhc.toggle.isNether() && (!plugin.scen.hasEnabledNetherInMeetup())) {
@@ -21,7 +28,6 @@ public class PvPStartService {
         }
 
         plugin.uhc.world.applyGameruleToPlayingWorlds(GameRules.PVP, true);
-        Bukkit.getPluginManager().callEvent(new PvPStartEvent());
         //TODO - add whitelist implementation
     }
 }
