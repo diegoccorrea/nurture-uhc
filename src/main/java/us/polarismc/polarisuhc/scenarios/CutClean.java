@@ -50,7 +50,7 @@ public class CutClean extends BaseScenario {
         }
 
         event.setDropItems(false);
-        event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), drop);
+        event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(.5, .5, .5) , drop);
 
         if (!hasSilkTouch(event.getPlayer())) {
             spawnOreXP(event.getBlock().getLocation(), getSmeltingXP(blockType));

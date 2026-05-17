@@ -9,12 +9,14 @@ import us.polarismc.polarisuhc.inventories.ScenGUI;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class ScenCommand implements TabExecutor {
     private final Main plugin;
 
     public ScenCommand(Main plugin) {
         this.plugin = plugin;
+        Objects.requireNonNull(plugin.getCommand("scen")).setExecutor(this);
     }
 
     @Override
