@@ -7,6 +7,8 @@ import us.polarismc.polarisuhc.scenarios.*;
 public enum ScenarioType {
     ABSORPTION_LESS(AbsorptionLess.class),
     CUT_CLEAN(CutClean.class),
+    DOUBLE_ORES(DoubleOres.class),
+    TRIPLE_ORES(TripleOres.class),
     FIRE_LESS(FireLess.class),
     FORTUNE_BABIES(FortuneBabies.class),
     FORTUNE_BOYS(FortuneBoys.class),
