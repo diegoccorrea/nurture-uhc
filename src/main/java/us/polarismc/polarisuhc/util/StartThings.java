@@ -6,6 +6,7 @@ import us.polarismc.polarisuhc.config.toggle.ToggleSetting;
 import us.polarismc.polarisuhc.config.toggle.handlers.NerfedStrength;
 import us.polarismc.polarisuhc.debug.*;
 import us.polarismc.polarisuhc.events.handlers.DeathHandler;
+import us.polarismc.polarisuhc.listeners.RatesListener;
 import us.polarismc.polarisuhc.listeners.WhitelistLoginListener;
 import us.polarismc.polarisuhc.managers.arena.ArenaManager;
 import us.polarismc.polarisuhc.managers.channel.ChannelManager;
@@ -84,6 +85,7 @@ public class StartThings {
     public void registerListeners() {
         new DeathHandler(plugin);
         new WhitelistLoginListener(plugin);
+        new RatesListener(plugin);
     }
 
     public void registerManagers() {
