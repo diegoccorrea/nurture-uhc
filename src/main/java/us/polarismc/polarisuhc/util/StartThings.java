@@ -16,6 +16,7 @@ import us.polarismc.polarisuhc.managers.game.timer.GameTimer;
 import us.polarismc.polarisuhc.managers.hub.HubManager;
 import us.polarismc.polarisuhc.managers.info.InfoManager;
 import us.polarismc.polarisuhc.managers.player.PlayerManager;
+import us.polarismc.polarisuhc.managers.player.commands.host.FindMiningCommand;
 import us.polarismc.polarisuhc.managers.player.commands.host.ManualStart;
 import us.polarismc.polarisuhc.managers.player.commands.host.QuickStart;
 import us.polarismc.polarisuhc.managers.player.commands.host.WorldC;
@@ -65,6 +66,7 @@ public class StartThings {
         new ManualStart(plugin);
         new QuickStart(plugin);
         new WorldC(plugin);
+        new FindMiningCommand(plugin);
         // Host config-related commands (uhc.managers.player.commands.host.legacy)
         new CreateWorld(plugin);
         new Toggle(plugin);

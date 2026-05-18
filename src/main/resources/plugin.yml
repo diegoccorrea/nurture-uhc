@@ -1,7 +1,7 @@
 name: polaris-uhc
 version: ${project.version}
 main: us.polarismc.polarisuhc.Main
-api-version: '1.21'
+api-version: "1.21"
 authors: [putindeer, tmpst]
 description: UHC Plugin for PolarisMC
 website: https://github.com/polaris-mc
@@ -83,3 +83,7 @@ commands:
   reloadscenarios:
     description: Reloads each scenario's config file.
     permission: uhc.host
+  findmining:
+    description: View players mining below Y=55 and teleport to them.
+    aliases: [fm]
+    permission: uhc.findmining
