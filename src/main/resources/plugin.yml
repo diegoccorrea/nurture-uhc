@@ -87,3 +87,5 @@ commands:
     description: View players mining below Y=55 and teleport to them.
     aliases: [fm]
     permission: uhc.findmining
+  arena:
+    description: Used for arena-related commands.

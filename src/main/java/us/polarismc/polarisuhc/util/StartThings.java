@@ -2,6 +2,7 @@ package us.polarismc.polarisuhc.util;
 
 import fr.mrmicky.fastinv.FastInvManager;
 import us.polarismc.polarisuhc.Main;
+import us.polarismc.polarisuhc.managers.arena.ArenaCommand;
 import us.polarismc.polarisuhc.config.toggle.ToggleSetting;
 import us.polarismc.polarisuhc.config.toggle.handlers.NerfedStrength;
 import us.polarismc.polarisuhc.debug.*;
@@ -83,6 +84,7 @@ public class StartThings {
         new TeamChat(plugin);
         new TeamCommand(plugin);
         new TeamLocation(plugin);
+        new ArenaCommand(plugin);
     }
 
     public void registerListeners() {
