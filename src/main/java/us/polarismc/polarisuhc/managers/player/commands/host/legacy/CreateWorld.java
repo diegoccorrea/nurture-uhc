@@ -1,14 +1,16 @@
 package us.polarismc.polarisuhc.managers.player.commands.host.legacy;
 
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import us.polarismc.polarisuhc.Main;
 
+import java.util.List;
 import java.util.Objects;
 
-public class CreateWorld implements CommandExecutor {
+public class CreateWorld implements TabExecutor {
     private final Main plugin;
 
     public CreateWorld(Main plugin) {
@@ -19,6 +21,7 @@ public class CreateWorld implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String @NotNull [] args) {
         //TODO - remove -a flag and replace it with Amplified scenario
+        //↑↑↑ ??? ↑↑↑
         try {
             switch (args.length) {
                 case 1 -> {
@@ -68,5 +71,12 @@ public class CreateWorld implements CommandExecutor {
                 "<red>Example: /createworld 12345",
                 "<red>Example: /createworld 12345 -a",
                 "<red>Example: /createworld 12345 67890");
+    }
+
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
+        return List.of(
+                "-a"
+        );
     }
 }
