@@ -24,7 +24,7 @@ import java.util.concurrent.ThreadLocalRandom;
         inDevelopment = true)
 public abstract class CutClean extends BaseScenario {
 
-    private final Map<Material, OreBlock.OreFamily> oreFamilyMap = new EnumMap<>(Material.class);
+    protected final Map<Material, OreBlock.OreFamily> oreFamilyMap = new EnumMap<>(Material.class);
 
     protected int multiplier = 1;
 
@@ -78,7 +78,7 @@ public abstract class CutClean extends BaseScenario {
             return;
         }
 
-        ItemStack drop = getProcessedOutput(blockType, family);
+        ItemStack drop = getProcessedOutput(family);
         if (drop == null) {
             return;
         }
@@ -87,11 +87,21 @@ public abstract class CutClean extends BaseScenario {
         event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(.5, .5, .5), drop);
 
         if (!hasSilkTouch(event.getPlayer())) {
-            spawnOreXP(event.getBlock().getLocation(), getSmeltingXP(blockType, family));
+            spawnOreXP(event.getBlock().getLocation(), getExperience(family));
         }
     }
 
-    private ItemStack getProcessedOutput(Material ore, OreBlock.OreFamily family) {
+    protected int getExperience(OreBlock.OreFamily family) {
+        return switch (family) {
+            case IRON, GOLD, EMERALD, COPPER, LAPIS -> 2;
+            case DIAMOND, NETHERITE -> 3;
+            case QUARTZ -> 4;
+            case COAL, REDSTONE -> 1;
+            default -> 0;
+        };
+    }
+
+    public ItemStack getProcessedOutput(OreBlock.OreFamily family) {
         if (family == OreBlock.OreFamily.NONE) {
             return null;
         }
@@ -108,21 +118,12 @@ public abstract class CutClean extends BaseScenario {
         return drop;
     }
 
-    private int getSmeltingXP(Material ore, OreBlock.OreFamily family) {
-        // Gold-based and gem-based ores give 2 XP; others give 1, multiplied
-        int base = switch (family) {
-            case GOLD, DIAMOND, EMERALD, NETHERITE -> 2;
-            default -> 1;
-        };
-        return base * getMultiplier();
-    }
-
     private boolean hasSilkTouch(Player player) {
         ItemStack tool = player.getInventory().getItemInMainHand();
         return tool.hasItemMeta() && tool.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH);
     }
 
     private void spawnOreXP(Location loc, int amount) {
-        loc.getWorld().spawn(loc, ExperienceOrb.class, orb -> orb.setExperience(amount));
+        loc.getWorld().spawn(loc, ExperienceOrb.class, orb -> orb.setExperience(amount * getMultiplier()));
     }
 }

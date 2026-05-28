@@ -66,6 +66,7 @@ public final class OreBlock {
         REDSTONE(Material.REDSTONE),
         QUARTZ(Material.QUARTZ),
         NETHERITE(Material.NETHERITE_SCRAP),
+        COAL(Material.COAL),
         NONE(null);
 
         private final Material output;
