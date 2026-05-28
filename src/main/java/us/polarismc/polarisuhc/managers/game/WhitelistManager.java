@@ -26,15 +26,11 @@ public class WhitelistManager {
         UUID uuid = event.getUniqueId();
 
         // Alive players can always rejoin
-        if (plugin.uhc.getAlivePlayers().stream().anyMatch(p -> p.getUniqueId().equals(uuid))) {
-            return false;
-        }
+        return plugin.uhc.getAlivePlayers().stream().noneMatch(p -> p.getUniqueId().equals(uuid));
 
-        // TODO: Check if host permission should be checked differently here
+        // TODO: Check if host permission should be checked differently here (with vault)
         // For now, we'll allow since we don't have the Player object yet
         // Hosts can be handled via permission check after player object is available
-
-        return true;
     }
 
     public Component getKickMessage() {

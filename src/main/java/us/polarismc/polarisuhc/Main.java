@@ -39,12 +39,16 @@ public class Main extends JavaPlugin {
         utils = new Utils(this, "<blue><bold>UHC</bold></blue> <dark_gray>»</dark_gray> <reset>");
         start = new StartThings(this);
         statistics = new StatisticsManager(this);
+        arena = new ArenaManager(this);
     }
 
     @Override
     public void onDisable() {
         if (start != null) {
             start.disable();
+        }
+        if (arena != null) {
+            arena.cleanup(); // Ensure arena is cleaned up on disable
         }
     }
 }

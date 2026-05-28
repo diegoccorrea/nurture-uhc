@@ -67,14 +67,11 @@ tasks.runServer {
     serverType(ServerType.PAPER)
     serverVersion("1.21.11")
     noGui(true)
-
     acceptMojangEula()
-
     downloadPlugins {
         jenkins("https://ci.athion.net", "FastAsyncWorldEdit", Regex("Bukkit"))
         url("https://download.luckperms.net/1581/bukkit/loader/LuckPerms-Bukkit-5.4.164.jar")
     }
-
     inputTask(tasks.named("shadowJar"))
 }
 
