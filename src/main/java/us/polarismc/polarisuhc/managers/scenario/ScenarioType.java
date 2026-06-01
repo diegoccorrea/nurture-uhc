@@ -25,7 +25,11 @@ public enum ScenarioType {
     TEAM_INVENTORY(TeamInventory.class),
     TIMBER(Timber.class),
     TIME_BOMB(TimeBomb.class),
-    UNBREAKABLE(Unbreakable.class);
+    UNBREAKABLE(Unbreakable.class),
+    WEB_CAGE(WebCage.class),
+    RISKY_FALL(RiskyFall.class),
+    ROD_LESS(RodLess.class);
+
 
     private final Class<? extends BaseScenario> scenarioClass;
 

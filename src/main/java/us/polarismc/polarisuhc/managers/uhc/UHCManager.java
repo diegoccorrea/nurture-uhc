@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 import us.polarismc.polarisuhc.Main;
 import us.polarismc.polarisuhc.config.border.BorderManager;
 import us.polarismc.polarisuhc.config.customcrafts.CustomCraftManager;
@@ -81,5 +82,9 @@ public class UHCManager {
 
     public boolean isFinalized() {
         return state == UHCState.FINALIZED;
+    }
+
+    public boolean isPlaying(@NotNull Player player) {
+        return alivePlayers.contains(plugin.player.getUHCPlayer(player));
     }
 }

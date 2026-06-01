@@ -15,6 +15,8 @@ import us.polarismc.polarisuhc.managers.scenario.Scenario;
 @Scenario(name = "GraveRobbers", author = "volcqnn", icon = Material.MOSSY_COBBLESTONE,
         description = "When a player dies, a grave is created at their death location with a sign showing their name.")
 public class GraveRobbers extends BaseScenario {
+
+    // FIXME - esta mal hecha la caja.
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         Location deathLoc = event.getEntity().getLocation();
