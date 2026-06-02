@@ -30,7 +30,7 @@ public class ArenaCommand implements CommandExecutor {
 
         if (cmd.getName().equalsIgnoreCase("arena")) {
             if (args.length == 0) {
-                utils.message(player, "<red>Uso: /arena join|leave|toggle</red>");
+                arenaManager.joinArena(player);
                 return true;
             }
 

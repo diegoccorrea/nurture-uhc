@@ -1,8 +1,11 @@
 package us.polarismc.polarisuhc.managers.info.scoreboard;
 
-import fr.mrmicky.fastboard.FastBoard;
+import me.catcoder.sidebar.ProtocolSidebar;
+import me.catcoder.sidebar.Sidebar;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 import us.polarismc.polarisuhc.Main;
 import us.polarismc.polarisuhc.managers.player.UHCPlayer;
 import us.polarismc.polarisuhc.managers.uhc.UHCState;
@@ -12,16 +15,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 public class ScoreboardManager {
     private final Main plugin;
-    private final Map<UUID, FastBoard> boards = new HashMap<>();
-    private Map<UHCState, StateConfig> stateConfigs = new EnumMap<>(UHCState.class);
-    private int updateTaskId = -1;
+    private final Map<UHCState, StateConfig> stateConfigs = new EnumMap<>(UHCState.class);
+    private final Map<UHCState, Sidebar<Component>> activeScoreboards = new EnumMap<>(UHCState.class);
 
     public ScoreboardManager(Main plugin) {
         this.plugin = plugin;
@@ -34,7 +34,7 @@ public class ScoreboardManager {
         stateConfigs.clear();
 
         File folder = plugin.getDataFolder();
-        if (folder == null || !folder.exists()) {
+        if (!folder.exists()) {
             folder.mkdirs();
         }
 
@@ -65,23 +65,6 @@ public class ScoreboardManager {
         loadConfig();
     }
 
-    public void onPlayerJoin(Player player) {
-        UHCPlayer uhcPlayer = plugin.player.getUHCPlayer(player);
-        if (uhcPlayer == null) return;
-
-        FastBoard board = new FastBoard(player);
-        boards.put(player.getUniqueId(), board);
-
-        updatePlayer(uhcPlayer);
-    }
-
-    public void onPlayerQuit(Player player) {
-        FastBoard board = boards.remove(player.getUniqueId());
-        if (board != null) {
-            board.delete();
-        }
-    }
-
     private String expand(String line, UHCPlayer uhcPlayer) {
         try {
             Player bukkitPlayer = uhcPlayer.getPlayer();
@@ -98,7 +81,7 @@ public class ScoreboardManager {
             String time = plugin.timer.getFormatted() != null ? plugin.timer.getFormatted() : "00:00:00";
 
             String next = "";
-            if (plugin.timer != null && bukkitPlayer != null) {
+            if (bukkitPlayer != null) {
                 next = plugin.timer.actionBarNext(bukkitPlayer);
             }
 
@@ -130,60 +113,68 @@ public class ScoreboardManager {
         }
     }
 
+    public void createScoreboardsForAllPlayers() {
+        UHCState currentState = plugin.uhc.getState();
+        Sidebar<Component> sidebar = createScoreboard(currentState);
+        activeScoreboards.put(currentState, sidebar);
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            sidebar.addViewer(player);
+        }
+    }
+
+    public void onPlayerJoin(Player player) {
+        UHCState currentState = plugin.uhc.getState();
+        Sidebar<Component> sidebar = activeScoreboards.get(currentState);
+        if (sidebar == null) {
+            sidebar = createScoreboard(currentState);
+            activeScoreboards.put(currentState, sidebar);
+        }
+        sidebar.addViewer(player);
+    }
+
+    public void onPlayerQuit(Player player) {
+        UHCState currentState = plugin.uhc.getState();
+        Sidebar<Component> sidebar = activeScoreboards.get(currentState);
+
+        if (sidebar != null) {
+            sidebar.removeViewer(player);
+        }
+    }
+
     private StateConfig getConfigForState(UHCState state) {
         return stateConfigs.getOrDefault(state, new StateConfig(state.name(), List.of()));
     }
 
-    public void updatePlayer(UHCPlayer uhcPlayer) {
-        Player player = uhcPlayer.getPlayer();
-        if (player == null || !player.isOnline()) return;
+    public Sidebar<Component> createScoreboard(@NotNull UHCState state) {
+        final Sidebar<Component> sidebar = ProtocolSidebar.newAdventureSidebar(
+                plugin.utils.chat(getConfigForState(state).title()),
+                plugin
+        );
 
-        FastBoard board = boards.get(player.getUniqueId());
-        if (board == null) return;
-
-        UHCState currentState = plugin.uhc.getState();
-        StateConfig config = getConfigForState(currentState);
-
-        String title = expand(config.title(), uhcPlayer);
-        board.updateTitle(title);
-
-        List<String> expandedLines = config.lines().stream()
-                .map(line -> expand(line, uhcPlayer))
-                .map(line -> line)
-                .toList();
-        board.updateLines(expandedLines);
-    }
-
-    public void updateAll() {
-        for (Map.Entry<UUID, FastBoard> entry : boards.entrySet()) {
-            Player player = Bukkit.getPlayer(entry.getKey());
-            if (player == null || !player.isOnline()) continue;
-
-            UHCPlayer uhcPlayer = plugin.player.getUHCPlayer(player);
-            if (uhcPlayer != null) {
-                updatePlayer(uhcPlayer);
+        for (String line : getConfigForState(state).lines()) {
+            if (line.trim().isEmpty()) {
+                sidebar.addBlankLine();
+                continue;
             }
+
+            if (line.contains("%")) {
+                sidebar.addUpdatableLine(player -> {
+                    UHCPlayer uhcPlayer = plugin.player.getUHCPlayer(player);
+                    if (uhcPlayer == null) {
+                        return Component.empty();
+                    }
+                    return plugin.utils.chat(expand(line, uhcPlayer));
+                });
+                continue;
+            }
+
+            sidebar.addLine(plugin.utils.chat(line));
         }
+
+        sidebar.updateLinesPeriodically(0, 20); // 1 second update interval
+        return sidebar;
     }
-
-    public void restartUpdateTask() {
-        if (updateTaskId != -1) {
-            Bukkit.getScheduler().cancelTask(updateTaskId);
-            updateTaskId = -1;
-        }
-
-        updateTaskId = Bukkit.getScheduler().runTaskTimer(plugin, () -> updateAll(), 20L, 20L).getTaskId();
-    }
-
     public void cleanup() {
-        if (updateTaskId != -1) {
-            Bukkit.getScheduler().cancelTask(updateTaskId);
-            updateTaskId = -1;
-        }
 
-        for (FastBoard board : boards.values()) {
-            board.delete();
-        }
-        boards.clear();
     }
 }

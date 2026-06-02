@@ -26,8 +26,9 @@ repositories {
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
 
-    implementation("fr.mrmicky:fastboard:2.1.5")
-    implementation("org.reflections:reflections:0.10.2")
+    // scoreboard
+    implementation(files("libs/bukkit-sidebar-6.2.10-SNAPSHOT.jar"))
+    implementation(files("libs/FoliaLib-0.5.2.jar"))
     implementation("fr.mrmicky:FastInv:v3.1.2")
     implementation("com.zaxxer:HikariCP:7.0.2")
     implementation("com.github.putindeer:mcdev-utils:1.0.28")
@@ -85,6 +86,7 @@ tasks.processResources {
 tasks.shadowJar {
     archiveClassifier.set("")
     relocate("de.rapha149.signgui", "us.polarismc.polarisuhc.signgui")
+    relocate("com.tcoded.folialib", "us.polarismc.polarisuhc.folialib")
 }
 
 tasks.build {
