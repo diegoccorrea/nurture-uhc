@@ -28,7 +28,7 @@ public class PreStartService {
         plugin.utils.broadcast("<gray>The scatter is going to start soon...");
 
         if (plugin.arena.isEnabled()) {
-            plugin.arena.disable();
+            plugin.arena.toggleArena();
         }
 
         plugin.uhc.setState(UHCState.PRESTARTED);
