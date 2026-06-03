@@ -28,6 +28,14 @@ public enum ScenarioType {
     UNBREAKABLE(Unbreakable.class),
     WEB_CAGE(WebCage.class),
     RISKY_FALL(RiskyFall.class),
+    BLOCK_RUSH(BlockRush.class),
+    BLOOD_ANVIL(BloodAnvil.class),
+    FALLOUT(Fallout.class),
+    FAST_GETAWAY(FastGetaway.class),
+    GAP_ZAP(GapZap.class),
+    GUNS_N_ROSES(GunsNRoses.class),
+    IRON_BOOST(IronBoost.class),
+    SKY_HIGH(SkyHigh.class),
     ROD_LESS(RodLess.class);
 
 
