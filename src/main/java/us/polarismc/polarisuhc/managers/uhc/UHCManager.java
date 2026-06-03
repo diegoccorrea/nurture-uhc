@@ -87,4 +87,8 @@ public class UHCManager {
     public boolean isPlaying(@NotNull Player player) {
         return alivePlayers.contains(plugin.player.getUHCPlayer(player));
     }
+
+    public boolean isPlayingArena(@NotNull Player player) {
+        return plugin.arena.getPlayersInArena().contains(player);
+    }
 }
