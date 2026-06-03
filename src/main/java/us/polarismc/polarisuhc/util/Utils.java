@@ -40,6 +40,19 @@ public class Utils extends PluginUtils {
         return sender.hasPermission("uhc.host");
     }
 
+    public void damagePlayer(Player player, double damage) {
+        if (player.getHealth() - damage <= 0) {
+            player.setHealth(0);
+        } else {
+            player.setHealth(player.getHealth() - damage);
+        }
+    }
+
+    // TODO - Agregar soporte para Folia
+    public void runTaskTimer(Runnable task, long delay, long period) {
+        plugin.getServer().getScheduler().runTaskTimer(plugin, task, delay, period);
+    }
+
     public ItemStack head() {
         //TODO - add ghead
         return new ItemStack(Material.PLAYER_HEAD);
