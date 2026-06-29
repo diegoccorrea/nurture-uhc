@@ -19,9 +19,6 @@ public @interface Scenario {
     Material icon() default Material.BEDROCK;
     String[] description() default {};
     ScenarioType[] incompatibleWith() default {};
-    boolean inDevelopment() default false;
     int priority() default 1;
-    boolean enablesNetherInMeetup() default false;
-    boolean disablesOverworld() default false;
-    boolean enablesMiningInMeetup() default false;
+    ScenarioProperty[] properties() default {};
 }

@@ -12,6 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import us.polarismc.polarisuhc.managers.scenario.BaseScenario;
 import us.polarismc.polarisuhc.managers.scenario.Scenario;
 import us.polarismc.polarisuhc.managers.scenario.ScenarioConfig;
+import us.polarismc.polarisuhc.managers.scenario.ScenarioProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.concurrent.ConcurrentMap;
 
 @Scenario(name = "TimeBomb", author = "volcqnn", icon = Material.TNT,
         description = "When a player dies, a TNT chest appears at their death location. After 30 seconds, it explodes.",
-        inDevelopment = true)
+        properties = ScenarioProperty.IN_DEVELOPMENT)
 public class TimeBomb extends BaseScenario {
     private int COUNTDOWN_SECONDS = 30;
     private float EXPLOSION_POWER = 4.0f;

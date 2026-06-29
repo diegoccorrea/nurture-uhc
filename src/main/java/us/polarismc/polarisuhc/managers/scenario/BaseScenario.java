@@ -90,7 +90,7 @@ public abstract class BaseScenario implements Listener {
     }
 
     public final boolean isInDevelopment() {
-        return annotation.inDevelopment();
+        return Arrays.stream(annotation.properties()).toList().contains(ScenarioProperty.IN_DEVELOPMENT);
     }
 
     protected String[] getDescriptionLines() {
@@ -101,16 +101,13 @@ public abstract class BaseScenario implements Listener {
         return new ItemStack(annotation.icon());
     }
 
-    public final boolean enablesNetherInMeetup() {
-        return annotation.enablesNetherInMeetup();
-    }
-
-    public final boolean disablesOverworld() {
-        return annotation.disablesOverworld();
-    }
-
-    public final boolean enablesMiningInMeetup() {
-        return annotation.enablesMiningInMeetup();
+    public final boolean checkProperties(ScenarioProperty... properties) {
+        for (ScenarioProperty property : properties) {
+            if (Arrays.stream(annotation.properties()).toList().contains(property)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public final void enable() {

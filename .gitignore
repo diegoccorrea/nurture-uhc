@@ -114,3 +114,5 @@ run/
 
 # AI Agent
 .atl
+.gradle
+build

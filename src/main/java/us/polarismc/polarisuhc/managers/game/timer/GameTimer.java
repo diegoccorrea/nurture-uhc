@@ -4,6 +4,7 @@ import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import us.polarismc.polarisuhc.Main;
+import us.polarismc.polarisuhc.managers.scenario.ScenarioProperty;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -181,8 +182,8 @@ public class GameTimer extends BukkitRunnable {
     }
 
     private void sendMeetupReminder(int milestone) {
-        boolean enabledNetherInMeetup = plugin.scen.hasEnabledNetherInMeetup();
-        boolean disabledOverworld = plugin.scen.hasDisabledOverworld();
+        boolean enabledNetherInMeetup = plugin.scen.hasProperty(ScenarioProperty.ENABLES_NETHER_IN_MEETUP);
+        boolean disabledOverworld = plugin.scen.hasProperty(ScenarioProperty.DISABLES_OVERWORLD);
         boolean nether = plugin.uhc.toggle.isNether();
         boolean tpBorder = plugin.uhc.border.isTpBorder();
 

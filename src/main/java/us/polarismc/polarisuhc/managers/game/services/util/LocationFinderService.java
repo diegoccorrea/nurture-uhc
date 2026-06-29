@@ -9,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import us.polarismc.polarisuhc.Main;
 import us.polarismc.polarisuhc.managers.player.UHCPlayer;
+import us.polarismc.polarisuhc.managers.scenario.ScenarioProperty;
 import us.polarismc.polarisuhc.managers.team.UHCTeam;
 
 import java.util.Random;
@@ -46,7 +47,7 @@ public class LocationFinderService {
     }
 
     public Location findSafeScatterLocation() {
-        boolean disabledOverworld = plugin.scen.hasDisabledOverworld();
+        boolean disabledOverworld = plugin.scen.hasProperty(ScenarioProperty.DISABLES_OVERWORLD);
 
         World world = disabledOverworld ? plugin.uhc.world.getNetherWorld() : plugin.uhc.world.getUhcWorld();
         if (world == null) return null;

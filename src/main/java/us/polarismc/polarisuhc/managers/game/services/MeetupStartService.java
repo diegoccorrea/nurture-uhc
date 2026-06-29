@@ -9,6 +9,7 @@ import us.polarismc.polarisuhc.Main;
 import us.polarismc.polarisuhc.events.MeetupStartEvent;
 import us.polarismc.polarisuhc.managers.game.timer.EventAnchor;
 import us.polarismc.polarisuhc.managers.player.UHCPlayer;
+import us.polarismc.polarisuhc.managers.scenario.ScenarioProperty;
 import us.polarismc.polarisuhc.managers.uhc.UHCState;
 
 import java.util.ArrayList;
@@ -24,8 +25,8 @@ public class MeetupStartService {
 
     public void startMeetup() {
         plugin.uhc.setState(UHCState.MEETUP);
-        boolean disabledOverworld = plugin.scen.hasDisabledOverworld();
-        boolean enablesNetherInMeetup = plugin.scen.hasEnabledNetherInMeetup();
+        boolean disabledOverworld = plugin.scen.hasProperty(ScenarioProperty.DISABLES_OVERWORLD);
+        boolean enablesNetherInMeetup = plugin.scen.hasProperty(ScenarioProperty.ENABLES_NETHER_IN_MEETUP);
         boolean nether = plugin.uhc.toggle.isNether();
 
         broadcastMeetupStart(disabledOverworld, enablesNetherInMeetup, nether);

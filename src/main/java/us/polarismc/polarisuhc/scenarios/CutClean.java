@@ -12,6 +12,7 @@ import org.bukkit.Location;
 import us.polarismc.polarisuhc.managers.scenario.BaseScenario;
 import us.polarismc.polarisuhc.managers.scenario.Scenario;
 import us.polarismc.polarisuhc.managers.scenario.ScenarioConfig;
+import us.polarismc.polarisuhc.managers.scenario.ScenarioProperty;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -21,7 +22,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 @Scenario(name = "CutClean", author = "putindeer", icon = Material.IRON_INGOT,
         description = "Ores are auto-smelted and animals drop cooked meat.",
-        inDevelopment = true)
+        properties = ScenarioProperty.IN_DEVELOPMENT)
 public abstract class CutClean extends BaseScenario {
 
     protected final Map<Material, OreBlock.OreFamily> oreFamilyMap = new EnumMap<>(Material.class);

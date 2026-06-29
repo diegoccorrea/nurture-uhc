@@ -21,16 +21,8 @@ public class ScenarioManager {
         scenarios.values().forEach(BaseScenario::reloadConfig);
     }
 
-    public boolean hasEnabledNetherInMeetup() {
-        return scenarios.values().stream().filter(BaseScenario::isEnabled).anyMatch(BaseScenario::enablesNetherInMeetup);
-    }
-
-    public boolean hasDisabledOverworld() {
-        return scenarios.values().stream().filter(BaseScenario::isEnabled).anyMatch(BaseScenario::disablesOverworld);
-    }
-
-    public boolean hasEnabledMiningInMeetup() {
-        return scenarios.values().stream().filter(BaseScenario::isEnabled).anyMatch(BaseScenario::enablesMiningInMeetup);
+    public boolean hasProperty(ScenarioProperty... properties) {
+        return scenarios.values().stream().anyMatch(scenario -> scenario.checkProperties(properties));
     }
 
     private void loadScenarios() {

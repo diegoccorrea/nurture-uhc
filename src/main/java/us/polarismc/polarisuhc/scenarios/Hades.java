@@ -3,6 +3,7 @@ package us.polarismc.polarisuhc.scenarios;
 import org.bukkit.Material;
 import us.polarismc.polarisuhc.managers.scenario.BaseScenario;
 import us.polarismc.polarisuhc.managers.scenario.Scenario;
+import us.polarismc.polarisuhc.managers.scenario.ScenarioProperty;
 
 @Scenario(name = "Hades", author = "putindeer", icon = Material.GOLDEN_SWORD,
         description = {"<green>Overworld</green> is disabled. You spawn in the <red>Nether</red>.",
@@ -12,8 +13,6 @@ import us.polarismc.polarisuhc.managers.scenario.Scenario;
                 "Blackstone veins may contain <aqua>Gilded Blackstone</aqua>.",
                 "The <red>Nether</red> has no lava.",
                 "You start with a <white>stone pickaxe</white>."},
-        enablesNetherInMeetup = true,
-        disablesOverworld = true,
-        inDevelopment = true)
+        properties = {ScenarioProperty.IN_DEVELOPMENT, ScenarioProperty.ENABLES_NETHER_IN_MEETUP, ScenarioProperty.DISABLES_OVERWORLD})
 public class Hades extends BaseScenario {
 }

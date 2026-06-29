@@ -16,10 +16,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import us.polarismc.polarisuhc.managers.scenario.BaseScenario;
-import us.polarismc.polarisuhc.managers.scenario.Scenario;
-import us.polarismc.polarisuhc.managers.scenario.ScenarioManager;
-import us.polarismc.polarisuhc.managers.scenario.ScenarioType;
+import us.polarismc.polarisuhc.managers.scenario.*;
 import us.polarismc.polarisuhc.managers.uhc.UHCState;
 
 import java.util.HashMap;
@@ -35,7 +32,7 @@ import static org.bukkit.Material.CHEST;
                 "Upon killing a player a chest containing their loot will spawn and can only be opened by the killer."
         },
         icon = Material.BARREL,
-        inDevelopment = true,
+        properties = ScenarioProperty.IN_DEVELOPMENT,
         incompatibleWith = {
                 ScenarioType.TIME_BOMB,
                 ScenarioType.GRAVE_ROBBERS,

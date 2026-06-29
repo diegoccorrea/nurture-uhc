@@ -6,6 +6,7 @@ import us.polarismc.polarisuhc.config.toggle.ToggleHandler;
 import us.polarismc.polarisuhc.config.toggle.ToggleInfo;
 import us.polarismc.polarisuhc.events.MeetupStartEvent;
 import us.polarismc.polarisuhc.managers.player.WarnReason;
+import us.polarismc.polarisuhc.managers.scenario.ScenarioProperty;
 
 import java.util.Objects;
 
@@ -13,7 +14,7 @@ import java.util.Objects;
 public class AutoMiningWarn extends ToggleHandler {
     @EventHandler
     public void onMeetupStart(MeetupStartEvent event) {
-        if (plugin.scen.hasEnabledMiningInMeetup()) return;
+        if (plugin.scen.hasProperty(ScenarioProperty.ENABLES_MINING_IN_MEETUP)) return;
         event.getAlivePlayers().stream().filter(player -> !event.getTeleportedPlayers().contains(player))
                 .filter(player -> Objects.requireNonNull(player.getPlayer()).getLocation().getBlockY() < 50)
                 .forEach(player -> plugin.utils.delay(200, () -> {
