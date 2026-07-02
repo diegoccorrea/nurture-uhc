@@ -1,1 +1,1 @@
-rootProject.name = "polaris-uhc"
+rootProject.name = "nurture-uhc"

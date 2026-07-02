@@ -36,7 +36,7 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        utils = new Utils(this, "<blue><bold>UHC</bold></blue> <dark_gray>»</dark_gray> <reset>");
+        utils = new Utils(this, "<dark_green><b>UHC</b></dark_green> <dark_gray>»</dark_gray> <reset>");
         start = new StartThings(this);
         statistics = new StatisticsManager(this);
         arena = new ArenaManager(this);

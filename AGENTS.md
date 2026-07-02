@@ -1,4 +1,4 @@
-# Polaris-UHC — Agent Instructions
+# Nurture-UHC — Agent Instructions
 
 ## Build System
 
@@ -43,19 +43,23 @@
 ## Testing
 
 ### Stack
+
 - `org.mockbukkit.mockbukkit:mockbukkit-v1.21:4.110.0` — mocks the Bukkit API (Server, PluginManager, etc.)
 - `org.junit.jupiter:junit-jupiter:5.11.0` — JUnit 5 for test structure and assertions
 
 ### File Location
+
 All test files live in `src/test/java/us/polarismc/polarisuhc/`.
 
 ### Conventions
+
 - Use the **manual MockBukkit API** — `MockBukkit.mock()` in `@BeforeEach` and `MockBukkit.unmock()` in `@AfterEach`.
 - Load the plugin via `MockBukkit.load(YourPlugin.class)` — this triggers `onEnable()`.
 - Do NOT use `MockBukkitExtension` — the manual pattern gives explicit control over server lifecycle.
 - Use reflection + `setAccessible(true)` for package-private fields.
 
 ### Example: Verifying plugin starts
+
 ```java
 class MainTest {
     private ServerMock server;
@@ -79,11 +83,13 @@ class MainTest {
 ```
 
 ### What to Test
+
 - **Startup**: plugin loads, `onEnable()` completes without throwing, `Main.getInstance()` is non-null.
 - **Commands**: dispatch a command via `MockBukkit.getServer().getCommandMap().dispatch(...)` and verify expected behavior.
 - **Listeners**: simulate events via `MockBukkit.getServer().getPluginManager().callEvent(...)` and verify state changes.
 
 ### Running Tests
+
 ```bash
 ./gradlew test       # run all tests
 ./gradlew test --info  # verbose output including MockBukkit logs

@@ -3,6 +3,8 @@
 # Use MiniMessage formatting: <red>, <bold>, <gold>, etc.
 # Placeholders: %players%, %alive%, %dead%, %spectators%, %state%, %time%, %next%, %border%, %kills%, %team%
 
+# TODO - Change the name from polaris to nurture.
+
 IDLE:
   title: "<aqua><b>Polaris UHC"
   lines:
