@@ -50,8 +50,24 @@ public class ActionBarManager {
         }, ticks);
     }
 
+    public void sendTemporary(Player player, Supplier<String> supplier) {
+        sendTemporary(player, supplier, 5);
+    }
+
     public void sendTemporary(Player player, String message, float seconds) {
         sendTemporary(player, () -> message, seconds);
+    }
+
+    public void sendTemporary(Player player, String message) {
+        sendTemporary(player, () -> message, 5);
+    }
+
+    public void sendGlobalTemporary(Supplier<String> supplier) {
+        sendGlobalTemporary(supplier, 5);
+    }
+
+    public void sendGlobalTemporary(String message) {
+        sendGlobalTemporary(() -> message, 5);
     }
 
     public void sendGlobalTemporary(Supplier<String> supplier, float seconds) {
