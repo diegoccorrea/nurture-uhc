@@ -15,7 +15,6 @@ public class SwordLess extends BaseScenario {
     public void onPlayerInteract(EntityDamageByEntityEvent event) {
         if (event.getDamager() instanceof Player player && isSword(player.getInventory().getItemInMainHand().getType())) {
             event.setCancelled(true);
-            plugin.utils.actionBar(player, "<red>Swords are disabled!");
             plugin.info.bar.sendTemporary(player, "<red>Swords are disabled!");
         }
     }
